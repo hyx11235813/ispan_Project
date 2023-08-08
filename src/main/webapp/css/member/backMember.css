@@ -1,0 +1,102 @@
+h1 {
+    text-align: center;
+    margin-top: 50px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 30px;
+    max-height: 1000px;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #56637187;
+}
+
+th {
+    background-color: #566371;
+    color: white;
+}
+
+.pagediv {
+	text-align:center;
+	font-size:20px;
+}
+
+.onpage {
+	color: #FFFFEE;
+}
+
+.onpage:hover {
+	color: green;
+}
+
+/* form { */
+/*     margin: 0px auto; 垂直置中並設定水平邊距 */
+/* 	max-width: 600px; 設定最大寬度 */
+/* } */
+
+/* label { */
+/*     display: inline-block; */
+/*     width: 80px; */
+/*     margin-right: 10px; */
+/* } */
+
+/* input[type="text"], input[type="movie"], textarea { */
+/*     width: 100%; */
+/*     padding: 10px; */
+/*     margin-bottom: 20px; */
+/*     border: 1px solid #ccc; */
+/*     border-radius: 4px; */
+/*     resize: vertical; */
+/* } */
+
+/* button[type="submit"], button { */
+/*     background-color: #626c76; */
+/*     color: white; */
+/*     padding: 8px 16px; 將 padding 調整為 8px 上下、16px 左右 */
+/* 	border: none; */
+/* 	border-radius: 4px; */
+/* 	cursor: pointer; */
+/* 	margin-right: 10px; 加上 margin-right 以便將兩個按鈕平行排列 */
+/* } */
+
+/* button[type="submit"]:hover, button:hover { */
+/*     background-color: #566371; */
+/* } */
+
+/* 响應式設計 */
+/* @media screen and (max-width: 600px) { */
+/*     表格樣式 */
+/* 	th, td { */
+/* 	    display: block; */
+/* 	} */
+/* 	tr { */
+/* 	    margin-bottom: 30px; */
+/* 	} */
+/* 	th:first-child, td:first-child { */
+/* 	    padding-top: 12px; */
+/* 	} */
+/* 	th:last-child, td:last-child { */
+/* 	    padding-bottom: 12px; */
+/* 	} */
+
+/*   表單樣式 */
+/* 	label { */
+/* 	  display: block; */
+/* 	  margin-bottom: 10px; */
+/* 	  width: 100%; 在小於 600px 的螢幕上將標籤設定為 100% 寬度 */
+/* 	} */
+/* 	input[type="text"], input[type="movie"], textarea { */
+/* 	    margin-bottom: 10px; */
+/* 	} */
+/* 	form { */
+/* 	    margin-top: 20px; */
+/* 	} */
+/* } */

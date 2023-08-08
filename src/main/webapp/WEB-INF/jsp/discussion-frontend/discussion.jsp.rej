@@ -1,0 +1,397 @@
+diff a/src/main/webapp/WEB-INF/jsp/discussion-frontend/discussion.jsp b/src/main/webapp/WEB-INF/jsp/discussion-frontend/discussion.jsp	(rejected hunks)
+@@ -209,6 +209,7 @@
+     cursor: pointer;
+ }
+ 
++
+ </style>
+   
+ <body>
+@@ -216,18 +217,18 @@
+ 
+ 	<div class="movieNameBanner">
+ 		<div class="movieNmae">
+-			<h1>預計放電影名稱的地方</h1>
++			<h1>開發中</h1>
+ 		</div>
+ 	</div>
+ 
+ 	<div class="container">
+-		<div class="card fixed-card" style="width: 18rem;">
+-			<img src="https://fakeimg.pl/500x700/200" class="card-img-top"
+-				alt="...">
+-			<div class="card-body">
+-				<p class="card-text">我這邊想放電影海報跟介紹，或許可以從爬蟲那邊獲取</p>
+-			</div>
+-		</div>
++<!-- 		<div class="card fixed-card" style="width: 18rem;"> -->
++<!-- 			<img src="https://fakeimg.pl/500x700/200" class="card-img-top" -->
++<!-- 				alt="..."> -->
++<!-- 			<div class="card-body"> -->
++<!-- 				<p class="card-text">我這邊想放電影海報跟介紹，或許可以從爬蟲那邊獲取</p> -->
++<!-- 			</div> -->
++<!-- 		</div> -->
+ 		<div class="wrap">
+ 			<div class="container-fluid mt-4 postNav" name="selectNav">
+ 				<ul class="nav nav-pills justify-content-center">
+@@ -374,7 +375,8 @@
+ 
+ <!-- ---------------------------留言Modal---------------------------------------------------- -->
+ <div id="commentModal" class="modal fade" tabindex="-1" role="dialog">
+-  <div class="modal-dialog" role="document">
++<!--   <div class="modal-dialog" role="document"> -->
++ <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title">評論</h5>
+@@ -382,12 +384,12 @@
+           <span aria-hidden="true">&times;</span>
+         </button>
+       </div>
+-      <div class="modal-body">
+-        
++      <div class="modal-body">       
+ <!--         先寫這邊的controller能夠送到關聯postid的commnet    5/11 -->
+ <!-- 			可能送出表單時，需要先獲取postid進行關聯 -->
+-
+-<!-- @PostMapping("/dic/submitPost/commentPost") -->
++		<div id="postContainer">
++			 <!-- 放使用者的文章 -->
++		</div>
+       <form:form id="commentForm" action="${contextRoot}/dic/submitPost/commentPost" method="post"
+       	enctype="multipart/form-data" modelAttribute="commentDto">  
+ <%--       	 <input type="hidden" name="postId" value="${post.postID}">   --%>
+@@ -404,7 +406,7 @@
+         <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+       	</div>
+         <div id="commentsContainer">
+-        <!--         我這裏要放使用者的留言 -->
++        <!--放使用者的留言 -->
+         </div>
+       
+       
+@@ -443,17 +445,8 @@
+ 	});
+ 	
+ 	
+-	//獲取當前 userid      --test------------------!!!!!
++	//獲取當前 userid   
+ 	
+-	// no function here, waiting for the hot function to finish
+-// 	$('#hot').on('click'.function(e){
+-// 		e.preventDefault();
+-// 		getHotPost();
+-// 		$('.nav-link').removeClass('active');
+-// 		$(this).addClass('active');
+-		
+-// 	})
+-
+ 
+ 	$(document).scroll(function(){
+ 		if(scrollEnabled&&$(window).scrollTop()+$(window).height()==$(document).height()){
+@@ -482,6 +475,10 @@
+     $('#top').on('click',function(e){
+     	$('.nav-link').removeClass('active');
+     	$(this).addClass('active');
++    	//test
++//     	sortOrder="hot";
++// //     	pageNumber=1;
++//     	infiniteScroll(sortOrder,true);//test
+     });
+     
+    
+@@ -504,11 +501,11 @@
+ 	   $('html,body').scrollTop(0);
+ 	   
+    });
+-//    $('#addPost').on('click',function(){	   
+-// // 	   $('.nav-link').removeClass('active');
+-// // 	   $(this).addClass('active');
++   $('#addPost').on('click',function(){	   
++// 	   $('.nav-link').removeClass('active');
++// 	   $(this).addClass('active');
+ 	   	 
+-//    });
++   });
+    //使用者選擇圖片時，可以顯現在畫面上
+    $('#postImage').on('change', function() {
+ 	   var file = this.files[0];
+@@ -543,9 +540,9 @@
+ 	    	  let postTitle = posts.title;
+ 	    	  let postContent = posts.content;
+ 	    	  let postID = posts.postID;
+-	    	  console.log("標題: ", postTitle);
+-	    	  console.log("內容: ", postContent);
+-	    	  console.log("ID: ", postID);
++// 	    	  console.log("標題: ", postTitle);
++// 	    	  console.log("內容: ", postContent);
++// 	    	  console.log("ID: ", postID);
+ 
+ 	    	  $('#title').val(postTitle);
+ 	    	  $('#content').val(postContent);
+@@ -572,7 +569,7 @@
+ 	            dataType: 'json',
+ 	            success: function(posts) {
+ 	                $('#empty').empty();
+-
++// 	                console.log("Posts array: ", posts); 
+ 	                renderPosts(posts);
+ 	            },
+ 	            error: function(xhr, status, error) {
+@@ -626,57 +623,15 @@
+ 	form.submit();
+ 	};
+ 	
+-// 	$('#commentModal').on('hidden.bs.modal', function () {
+-// 		 infiniteScroll(sortOrder,true)
+-// 	});//????
+ 	
+ 	$('#commentModal').on("hidden.bs.modal", function () {
+-// 		  infiniteScroll(sortOrder, true);
+-// 		sortOrder
+ 	    	pageNumber=1;
+ 	    infiniteScroll(sortOrder,true);
++        $('#newToOld').addClass('active');
+ 	});
+ 
+ 
+   //functions-----------------------------------------------------
+-  
+-  //hot post
+-//   function getHotPost(){
+-  	
+-//     }
+-//   New to old
+-//     function getNewToOldPost() {
+-//         $.ajax({
+-//             type: "GET",
+-//             url: "http://localhost:8080/meow/dic/user/posts/scroll",
+-//             dataType: "json",
+-//             success: function(posts) {
+-//                 renderPosts(posts);
+-//                 console.log(posts);
+-//             },
+-//             error: function(xhr, status, error) {
+-//                 console.error("Error: " + status + error);
+-//                 console.log("wrong");
+-//             }
+-//         });
+-//     }
+-    
+-//     Old to new 
+-//     function getOldToNewPost() {
+-//         $.ajax({
+-//             type: "GET",
+-//             url: "http://localhost:8080/meow/dic/user/posts/old",
+-//             dataType: "json",
+-//             success: function(posts) {
+-//                 renderPosts(posts);
+-//                 console.log(posts);
+-//             },
+-//             error: function(xhr, status, error) {
+-//                 console.error("Error: " + status + error);
+-//                 console.log("wrong..");
+-//             }
+-//         });
+-//     }
+ 
+ // 	function returnRendering()
+ 	//Infinite scroll functions------------------------------------
+@@ -684,6 +639,16 @@
+ 		$('#loading-indicator').show();
+ 		//判斷點擊哪個來決定請求的網址
+ 		let url = sortOrder === 'new' ? 'http://localhost:8080/meow/dic/user/posts/scroll' : 'http://localhost:8080/meow/dic/user/posts/scroll/old';
++// 		if (sortOrder === 'old') {
++// 		    $('#newToOld').removeClass('active');
++// 		} else if(sortOrder === 'new'){
++// // 			  $('#newToOld').addClass('active');
++// 		}
++// 		else {
++// 		    $('#top').removeClass('active');
++			
++// 		}
++		
+ 		$.ajax({
+ 			type:"GET",
+ 			url:url,
+@@ -770,6 +735,7 @@
+ // 			        console.log("測試點擊postDiv");
+ // 			        console.log("測試點擊獲取postID" + post.postID);
+ 			        openCommentModal(post,window.loggedInUserId);
++			        $('#top').removeClass('active');
+ 			    };
+ 			})(post));
+ 			            
+@@ -785,13 +751,13 @@
+             let commentsCount=$('<p>').addClass('comments-count').text(post.commentsCount||0);
+             
+             commentsInfoDiv.append(commentsIcon, commentsCount);
+-            cardBodyDiv.append(cardUserSpan, cardTitle, cardText, commentsInfoDiv);
++            cardBodyDiv.append(cardUserSpan, cardTitle, cardText);
+             
+             if (img) {
+                 let imgElement = $('<img>').attr('src', 'data:image/jpeg;base64,' + post.base64Image).addClass('Image').attr('alt', 'Image');
+                 cardBodyDiv.append(imgElement);
+             }
+-            
++            cardBodyDiv.append( commentsInfoDiv);
+             colDiv.append(cardBodyDiv);
+             rowDiv.append(colDiv);
+             cardDiv.append(rowDiv);
+@@ -834,27 +800,7 @@
+     }
+     
+     //以下開始為 comment 因爲程式行太多所以全放這比較方便--------------------5/11--------test---------------------------------------
+-//     function openCommentModal(postID) {
+-//         $('#commentsContainer').empty();
+-
+-//         $.ajax({
+-//             url: 'your_comments_api_endpoint?postID=' + postID, // 替换为您的评论API端点
+-//             type: 'GET',
+-//             success: function (response) {
+-//                 let comments = response.comments;
+-
+-//                 comments.forEach(function (comment) {
+-//                     let commentElement = $('<p>').text(comment.content); // 根据您的评论数据结构进行修改
+-//                     $('#commentsContainer').append(commentElement);
+-//                 });
+-
+-//                 $('#commentModal').modal('show');
+-//             },
+-//             error: function (xhr, status, error) {
+-//                 console.error( error);
+-//             }
+-//         });
+-//     }
++
+     	//留言 modal裏面的 sumbit 事件---test
+     	$('#commentForm').submit(function (e) {
+ 		    e.preventDefault();
+@@ -868,9 +814,9 @@
+ 		        data: formData,
+ 		        success: function (comment) {
+ 		            // 測試印出
+-		            console.log("$('#commentForm').submit(function (e) comment: " + JSON.stringify(comment));
+-		            console.log("$('#commentForm'comment.username " + comment.user.username);
+-		            console.log("$('#commentForm'comment.ID " + comment.user.id);
++// 		            console.log("$('#commentForm').submit(function (e) comment: " + JSON.stringify(comment));
++// 		            console.log("$('#commentForm'comment.username " + comment.user.username);
++// 		            console.log("$('#commentForm'comment.ID " + comment.user.id);
+ 		            let commentDiv=$('<div>').attr('id','comment-'+comment.commentID)//for delete
+ 					let username=$('<h3>').text(comment.user.username);
+ 					let commentDate=$('<span>').text(comment.commentDate);
+@@ -909,52 +855,80 @@
+     
+     	
+ 		
+-    	//這邊用來獲取評論並append到留言的modal裏面來顯示出來
+-         function openCommentModal(post,loggedInUserId){
+-//         	  console.log('openCommentModal.loggedInUserId:', loggedInUserId);
+-    		$('#hiddenPostId').val(post.postID);
+-//         	 console.log("測試點擊openCommentModal的該postid"+post.postID);
+-//          function openCommentModal(comment){
+-//         	 console.log("測試點擊openCommentModal"+post);
+-        	 $('#commentsContainer').empty();
+-//         	 console.log('ID:', loggedInUserId);
+-
+-        	 $.ajax({
+-        		url:"${contextRoot}/dic/getCommentsByPostId",
+-        		data:{postId:post.postID},
+-        		type:"GET",
+-        		success:function(comments){
+-        			renderComments(comments,loggedInUserId);
+-//         			console.log(JSON.stringify(comment));
+-					//我至少需要獲取user跟comment.content
+-        			console.log("測試回傳的comment的内容："+JSON.stringify(comments));
+-        		},
+-        		error:function (xhr, status, error) {
+-        		      console.error( error);
+-        	    },       	 
+-        	 });
+-        	 $('#commentModal').modal('show');
+-        	 }
+-         });
++    	//comment的modal顯示該文章及它的留言
++		function openCommentModal(post, loggedInUserId) {
++			//透過寫兩個ajax的方式才能成功把我要的三個值一起傳出去
++			//獲取文章
++		    $.ajax({
++		        url: "${contextRoot}/dic/user/posts/comment",
++		        data: { postID: post.postID },
++		        type: "GET",
++		        success: function (postContent) {
++// 		        	console.log("postContentimageBase64"+postContent.imageBase64);
++		        	//獲取文章下的留言
++		            $.ajax({
++		                url: "${contextRoot}/dic/getCommentsByPostId",
++		                data: { postId: post.postID },
++		                type: "GET",
++		                success: function (comments) {
++		                    renderComments(comments, loggedInUserId, postContent);
++		                    console.log("comments"+comments);
++		                },
++		                error: function (xhr, status, error) {
++		                    console.error(error);
++		                },
++		            });
++		        },
++		        error: function (xhr, status, error) {
++		            console.error(error);
++		        },
++		    });
++
++		    $('#commentModal').modal('show');
++       	 }
++        });
++
++		
++
+ //    
+-				function renderComments(comments, loggedInUserId) {
++				function renderComments(comments, loggedInUserId, postContent) {
+ 				    let commentsContainer = $('#commentsContainer');
++				    let postContainer=$('#postContainer');
+ 				    commentsContainer.empty();
++				    postContainer.empty();
+ 				    // 按 commentDate 新到舊來排序
+ 				    comments.sort(function (a, b) {
+ 				        return new Date(b.commentDate) - new Date(a.commentDate);
+ 				    });
+-				
+-				    // 現在可以確定，loggedInUserId 可以傳到最後這邊來了-----！！！！！！！！！！
+-				    console.log('renderComments.loggedInUserId :', loggedInUserId);
+-// 				    console.log('renderComments.commentId :', comments.commentId);
+-				    comments.forEach(function (comment) {
+-				        let username = $('<h3>').text(comment.username);
++// 				    console.log("Post content:", postContent.content)//test
++// 				    console.log("Post title:", postContent.title)//test
++// 				    console.log("Post username:", postContent.username)//test
++// 				    console.log("Post postDate:", postContent.postDate)//test
++				    
++				    	//post
++				    	let postUsername=$('<h3>').text(postContent.username);
++				    	let postPostDate=$('<h2>').text(postContent.postDate);
++				    	let postTitle=$('<h2>').text(postContent.title);
++				    	let postContents=$('<h5>').text(postContent.content);
++				    	let postImage=$('<img>').attr('src','data:image/jpeg;base64,'+postContent.imageBase64);
++				    	
++				    	postContainer.append(postUsername);
++				    	postContainer.append(postPostDate);
++				    	postContainer.append(postTitle);
++				    	postContainer.append(postContents);
++				    	postContainer.append(postImage);
++				    	
++				    	
++				    	comments.forEach(function (comment) {				    					    					    	
++				        //comment
++				    	let username = $('<h3>').text(comment.username);
+ 				        let commentDate = $('<span>').text(comment.commentDate);
+ 				        let comments = $('<p>').text(comment.content);
+ 				        commentsContainer.append(username);
+ 				        commentsContainer.append(commentDate);
+ 				        commentsContainer.append(comments);
++				        
++// 				        commentsContainer.append(test);//test ok 
+ 				
+ 				        if (loggedInUserId === comment.userID) {
+ 				            let deleteButton = $('<button>').text('删除').addClass('btn btn-danger').click(function () {

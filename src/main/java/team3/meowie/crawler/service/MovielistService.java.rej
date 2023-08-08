@@ -1,0 +1,9 @@
+diff a/src/main/java/team3/meowie/crawler/service/MovielistService.java b/src/main/java/team3/meowie/crawler/service/MovielistService.java	(rejected hunks)
+@@ -31,7 +31,6 @@
+ 	
+ 
+ 	@Transactional
+-		String url = "https://movies.yahoo.com.tw/movie_thisweek.html";
+ 	public List<Movielist> autoCrawlerMovielistComingSoonFromYahoo() {
+ 		String url = "https://movies.yahoo.com.tw/movie_comingsoon.html";
+ 		HttpResponse<String> response = null;

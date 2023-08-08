@@ -1,0 +1,214 @@
+:root {
+    --primary-color: #7584A9;
+    --secondary-color: #616161;
+    --text-color: #bab1b1;
+    --bg-color: #121212;
+    --border-color: #212121;
+    --font-family: 'Noto Sans TC', sans-serif;
+}
+
+body {
+    font-family: var(--font-family);
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+    color: var(--secondary-color);
+}
+
+a {
+    text-decoration: none;
+    color: var(--secondary-color);
+}
+
+.page-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.search-box {
+    background-color: var(--primary-color);
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-gap: 1rem;
+    align-items: center;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.search-box:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom right, #f9a825, #f57f17);
+    opacity: 0.3;
+    z-index: -1;
+    border-radius: inherit;
+}
+
+.search-box label {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-right: 1rem;
+    user-select: none;
+}
+
+.search-box input[type="text"] {
+    font-size: 1.5rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    width: 100%;
+    background-color: transparent;
+    color: #fff;
+    outline: none;
+}
+
+.search-box input[type="text"]:focus {
+    box-shadow: 0 0 0 2px #f9cc73d1;
+}
+
+.search-box input[type="submit"] {
+    font-size: 1.5rem;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: var(--secondary-color);
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.search-box input[type="submit"]:hover {
+    background-color: #efc88e;
+}
+
+.result-box {
+    margin: 4rem auto;
+    width: 90%;
+    max-width: 1200px;
+    background-color: var(--bg-color);
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    border-radius: 0.5rem;
+}
+
+.result-box h3 {
+    font-size: 2.5rem;
+    margin: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+    text-transform:uppercase;
+	margin-bottom: 2rem;
+text-align: center;
+}
+.result-box .result-item {
+	margin-top: 2rem;
+	border: 2px solid var(--border-color);
+	border-radius: 0.5rem;
+	padding: 2rem;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 1rem;
+	transition: all 0.2s ease-in-out;
+	background-color: #212121;
+	}
+	
+	.result-box .result-item img {
+	width: 100%;
+	max-width: 300px;
+	height: auto;
+	object-fit: cover;
+	border-radius: 0.5rem;
+	}
+	
+	.result-box .result-item h4 {
+	font-size: 1.8rem;
+	margin-top: 2rem;
+	margin-bottom: 1rem;
+	font-weight: bold;
+	color: var(--primary-color);
+	text-align: center;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	max-width: 90%;
+	}
+	
+	.result-box .result-item p {
+	font-size: 1.4rem;
+	margin: 0;
+	color: var(--text-color);
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	max-width: 90%;
+	text-align: center;
+	}
+	
+	.result-box .result-item:hover {
+	box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4);
+	transform: translateY(-5px);
+	}
+	
+	.result-box .result-item .rating {
+	margin-top: 1rem;
+	font-size: 1.4rem;
+	color: var(--secondary-color);
+	text-align: center;
+	}
+	
+	.result-box .result-item .overview {
+	margin-top: 1rem;
+	font-size: 1.4rem;
+	color: var(--text-color);
+	text-align: justify;
+	text-justify: inter-word;
+	max-width: 90%;
+	}
+	
+	.autocomplete-items {
+	position: absolute;
+	border: 1px solid var(--border-color);
+	border-top: none;
+	z-index: 99;
+	top: 100%;
+	left: 0;
+	right: 0;
+	background-color: #fff;
+	max-height: 200px;
+	overflow-y: scroll;
+	border-radius: 0 0 0.5rem 0.5rem;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+	}
+	
+	.autocomplete-items div {
+	padding: 0.5rem;
+	cursor: pointer;
+	font-size: 1.5rem;
+	color: var(--text-color);
+	transition: background-color 0.2s ease-in-out;
+	}
+	
+	.autocomplete-items div:hover {
+	background-color: var(--bg-color);
+	}

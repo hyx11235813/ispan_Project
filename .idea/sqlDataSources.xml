@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="872c881a-53ca-483a-a051-578964c97db5" name="Meowie@localhost Mapping">
+      <data-sources db="8bff1c5c-5c79-4d1c-942f-93752aa2b469" ddl="f4d066f9-9f07-4e83-b7b5-05778e02d318" />
+      <scope>
+        <node kind="schema" qname="Meowie" />
+      </scope>
+    </mapping>
+  </component>
+</project>
